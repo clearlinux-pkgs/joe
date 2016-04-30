@@ -4,7 +4,7 @@
 #
 Name     : joe
 Version  : 4.2
-Release  : 19
+Release  : 20
 URL      : http://downloads.sourceforge.net/joe-editor/joe-4.2.tar.gz
 Source0  : http://downloads.sourceforge.net/joe-editor/joe-4.2.tar.gz
 Summary  : No detailed summary available
