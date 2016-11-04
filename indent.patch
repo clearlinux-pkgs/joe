@@ -1,0 +1,10 @@
+--- joe-4.3/rc/ftyperc~	2016-08-17 13:55:24.000000000 +0000
++++ joe-4.3/rc/ftyperc	2016-11-04 18:01:35.777070900 +0000
+@@ -257,7 +257,6 @@
+ *.h++
+ *.hh
+ *.mm
+--autoindent
+ -title
+ -syntax c
+ -highlighter_context

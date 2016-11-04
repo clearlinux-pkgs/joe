@@ -4,7 +4,7 @@
 #
 Name     : joe
 Version  : 4.3
-Release  : 21
+Release  : 22
 URL      : http://downloads.sourceforge.net/joe-editor/joe-4.3.tar.gz
 Source0  : http://downloads.sourceforge.net/joe-editor/joe-4.3.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ BuildRequires : ncurses-dev
 BuildRequires : pkgconfig(ncurses)
 Patch1: stateless.patch
 Patch2: ncursesw.patch
+Patch3: indent.patch
 
 %description
 # Utility programs:
@@ -52,6 +53,7 @@ doc components for the joe package.
 %setup -q -n joe-4.3
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export LANG=C
