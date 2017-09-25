@@ -1,0 +1,16 @@
+Configure miss: sys/dirent.h usability
+Configure miss: sys/dirent.h presence
+Configure miss: sys/dirent.h
+Configure miss: sys/utime.h usability
+Configure miss: sys/utime.h presence
+Configure miss: sys/utime.h
+Configure miss: selinux/selinux.h usability
+Configure miss: selinux/selinux.h presence
+Configure miss: selinux/selinux.h
+Configure miss: selinux/context.h usability
+Configure miss: selinux/context.h presence
+Configure miss: selinux/context.h
+Configure miss: sighandler_t
+Configure miss: whether lstat accepts an empty string
+Configure miss: sigvec
+Configure miss: whether sighandlers must be reinstalled

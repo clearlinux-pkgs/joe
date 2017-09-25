@@ -1,5 +1,5 @@
 PKG_NAME := joe
-URL := http://downloads.sourceforge.net/joe-editor/joe-4.4.tar.gz
+URL := https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.5/joe-4.5.tar.gz
 
 
 include ../common/Makefile.common
