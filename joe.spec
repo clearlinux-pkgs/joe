@@ -4,7 +4,7 @@
 #
 Name     : joe
 Version  : 4.5
-Release  : 25
+Release  : 26
 URL      : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.5/joe-4.5.tar.gz
 Source0  : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.5/joe-4.5.tar.gz
 Summary  : No detailed summary available
@@ -15,6 +15,9 @@ Requires: joe-data
 Requires: joe-doc
 BuildRequires : ncurses-dev
 BuildRequires : pkgconfig(ncurses)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: stateless.patch
 Patch2: ncursesw.patch
 Patch3: indent.patch
@@ -60,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1506352186
+export SOURCE_DATE_EPOCH=1507309748
 %configure --disable-static --sysconfdir=/usr/share/defaults/
 make V=1  %{?_smp_mflags}
 
@@ -72,7 +75,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1506352186
+export SOURCE_DATE_EPOCH=1507309748
 rm -rf %{buildroot}
 %make_install
 
