@@ -3,7 +3,6 @@ Configure miss: sys/dirent.h presence
 Configure miss: sys/dirent.h
 Configure miss: sys/utime.h usability
 Configure miss: sys/utime.h presence
-Configure miss: sys/utime.h
 Configure miss: selinux/selinux.h usability
 Configure miss: selinux/selinux.h presence
 Configure miss: selinux/selinux.h

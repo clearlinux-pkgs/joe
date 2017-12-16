@@ -1,0 +1,11 @@
+--- joe-4.5/joe/syntax.c~	2017-09-24 02:49:49.000000000 +0000
++++ joe-4.5/joe/syntax.c	2017-12-16 21:08:56.462823402 +0000
+@@ -218,7 +218,7 @@
+ 		/* Loop while noeat */
+ 		do {
+ 			/* Guard against infinite loops from buggy syntaxes */
+-			if (iters++ > state_count) {
++			if (iters++ > state_count || (long)h == -1) {
+ 				invalidate_state(&h_state);
+ 				return h_state;
+ 			}
