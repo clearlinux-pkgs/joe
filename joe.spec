@@ -4,7 +4,7 @@
 #
 Name     : joe
 Version  : 4.6
-Release  : 29
+Release  : 30
 URL      : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Source0  : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Summary  : No detailed summary available
@@ -50,6 +50,14 @@ Group: Documentation
 doc components for the joe package.
 
 
+%package extras
+Summary: extras components for the joe package.
+Group: Default
+
+%description extras
+extras components for the joe package.
+
+
 %prep
 %setup -q -n joe-4.6
 %patch1 -p1
@@ -62,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1515785534
+export SOURCE_DATE_EPOCH=1524166350
 %configure --disable-static --sysconfdir=/usr/share/defaults/
 make  %{?_smp_mflags}
 
@@ -74,7 +82,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1515785534
+export SOURCE_DATE_EPOCH=1524166350
 rm -rf %{buildroot}
 %make_install
 
@@ -91,10 +99,10 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/applications/jmacs.desktop
+%exclude /usr/share/applications/jmacs.desktop
+%exclude /usr/share/applications/jpico.desktop
+%exclude /usr/share/applications/jstar.desktop
 /usr/share/applications/joe.desktop
-/usr/share/applications/jpico.desktop
-/usr/share/applications/jstar.desktop
 /usr/share/defaults/joe/ftyperc
 /usr/share/defaults/joe/jicerc.ru
 /usr/share/defaults/joe/jmacsrc
@@ -207,3 +215,9 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc /usr/share/doc/joe/*
 %doc /usr/share/man/man1/*
+
+%files extras
+%defattr(-,root,root,-)
+/usr/share/applications/jmacs.desktop
+/usr/share/applications/jpico.desktop
+/usr/share/applications/jstar.desktop
