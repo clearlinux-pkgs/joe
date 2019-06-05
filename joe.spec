@@ -4,7 +4,7 @@
 #
 Name     : joe
 Version  : 4.6
-Release  : 31
+Release  : 32
 URL      : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Source0  : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Summary  : No detailed summary available
