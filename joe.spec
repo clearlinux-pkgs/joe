@@ -4,15 +4,16 @@
 #
 Name     : joe
 Version  : 4.6
-Release  : 32
+Release  : 33
 URL      : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Source0  : https://sourceforge.net/projects/joe-editor/files/JOE%20sources/joe-4.6/joe-4.6.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
-Requires: joe-bin
-Requires: joe-data
-Requires: joe-doc
+Requires: joe-bin = %{version}-%{release}
+Requires: joe-data = %{version}-%{release}
+Requires: joe-license = %{version}-%{release}
+Requires: joe-man = %{version}-%{release}
 BuildRequires : ncurses-dev
 BuildRequires : pkgconfig(ncurses)
 Patch1: stateless.patch
@@ -28,7 +29,8 @@ This converts rc and .jsf files into a C file.  Use it to build the builtins.c f
 %package bin
 Summary: bin components for the joe package.
 Group: Binaries
-Requires: joe-data
+Requires: joe-data = %{version}-%{release}
+Requires: joe-license = %{version}-%{release}
 
 %description bin
 bin components for the joe package.
@@ -45,6 +47,7 @@ data components for the joe package.
 %package doc
 Summary: doc components for the joe package.
 Group: Documentation
+Requires: joe-man = %{version}-%{release}
 
 %description doc
 doc components for the joe package.
@@ -58,8 +61,25 @@ Group: Default
 extras components for the joe package.
 
 
+%package license
+Summary: license components for the joe package.
+Group: Default
+
+%description license
+license components for the joe package.
+
+
+%package man
+Summary: man components for the joe package.
+Group: Default
+
+%description man
+man components for the joe package.
+
+
 %prep
 %setup -q -n joe-4.6
+cd %{_builddir}/joe-4.6
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -69,21 +89,31 @@ extras components for the joe package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1524166350
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604098129
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --sysconfdir=/usr/share/defaults/
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1524166350
+export SOURCE_DATE_EPOCH=1604098129
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/joe
+cp %{_builddir}/joe-4.6/COPYING %{buildroot}/usr/share/package-licenses/joe/4cc77b90af91e615a64ae04893fdffa7939db84c
 %make_install
 
 %files
@@ -99,9 +129,6 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
-%exclude /usr/share/applications/jmacs.desktop
-%exclude /usr/share/applications/jpico.desktop
-%exclude /usr/share/applications/jstar.desktop
 /usr/share/applications/joe.desktop
 /usr/share/defaults/joe/ftyperc
 /usr/share/defaults/joe/jicerc.ru
@@ -209,15 +236,22 @@ rm -rf %{buildroot}
 /usr/share/joe/syntax/whitespace.jsf
 /usr/share/joe/syntax/xml.jsf
 /usr/share/joe/syntax/yaml.jsf
-/usr/share/man/ru/man1/joe.1
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/joe/*
-%doc /usr/share/man/man1/*
 
 %files extras
 %defattr(-,root,root,-)
 /usr/share/applications/jmacs.desktop
 /usr/share/applications/jpico.desktop
 /usr/share/applications/jstar.desktop
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/joe/4cc77b90af91e615a64ae04893fdffa7939db84c
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/joe.1
+/usr/share/man/ru/man1/joe.1
